@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   titleTextStyle: {
     color: 'white',
     fontSize: 40,
-    fontFamily: 'serif',
+    fontFamily: 'sans-serif',
     fontWeight: '100',
     marginTop: 20
   }
