@@ -1,7 +1,27 @@
 import React, { useState } from 'react';
 import { View, Text, Image, FlatList, StyleSheet } from 'react-native';
+import { AppLoading } from 'expo';
+import * as Font from 'expo-font';
+import { loadAsync } from 'expo-font';
+
+const fetchFonts = () => {
+  return Font.loadAsync({
+    'Chewy-Regular': require('../../assets/fonts/Chewy-Regular.ttf')
+  });
+};
 
 const Main = () => {
+  const [fontLoaded, setFontLoaded] = useState(false);
+
+  if (!fontLoaded) {
+    return (
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => setFontLoaded(true)}
+      />
+    );
+  }
+
   return (
     <View style={styles.mainContainerStyle}>
       <Image
@@ -9,7 +29,7 @@ const Main = () => {
         style={{ height: 150, width: 150 }}
       />
       <View style={styles.grayContainerStyle}>
-        <Text style={styles.titleTextStyle}>Royal's Portfolio</Text>
+        <Text style={{ fontFamily: 'Chewy-Regular' }}>Royal's Portfolio</Text>
       </View>
     </View>
   );
@@ -38,8 +58,6 @@ const styles = StyleSheet.create({
   titleTextStyle: {
     color: 'white',
     fontSize: 40,
-    fontFamily: 'sans-serif',
-    fontWeight: '100',
     marginTop: 20
   }
 });
