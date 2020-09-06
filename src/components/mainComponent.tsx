@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
   Image,
   FlatList,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions
 } from 'react-native';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
@@ -18,7 +19,19 @@ const fetchFonts = () => {
 
 const Main = () => {
   const [fontLoaded, setFontLoaded] = useState(false);
+  const [dimensions, setDimensions] = useState({ window, screen });
 
+  const onChange = (screen: any) => {
+    console.log({ screen });
+    setDimensions(screen);
+  };
+
+  useEffect(() => {
+    Dimensions.addEventListener('change', onChange);
+    return () => {
+      Dimensions.removeEventListener('change', onChange);
+    };
+  });
   const yellowShortcuts = () => {
     return (
       <View style={styles.yellowTextContainerStyle}>
@@ -132,22 +145,28 @@ const styles = StyleSheet.create({
     fontSize: 40,
     marginTop: 20,
     marginBottom: 20,
-    fontFamily: 'Chewy-Regular'
-  },
-  descriptionTextStyle: {
-    color: 'white',
-    fontSize: 14,
-    marginBottom: 10
+    fontFamily: 'Chewy-Regular',
+    flexWrap: 'wrap'
   },
   descriptionContainerStyle: {
     justifyContent: 'center',
     alignItems: 'center',
-    textAlign: 'center'
+    textAlign: 'center',
+    flexShrink: 1,
+    width: '90%'
   },
+  descriptionTextStyle: {
+    color: 'white',
+    fontSize: 14,
+    marginBottom: 10,
+    width: '100%'
+  },
+
   yellowTextContainerStyle: {
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    flexWrap: 'wrap'
   },
 
   yellowTitleTextStyle: {
@@ -155,7 +174,8 @@ const styles = StyleSheet.create({
     color: '#FFC400',
     fontStyle: 'italic',
     fontFamily: 'Chewy-Regular',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    width: '100%'
   },
   yellowTextWhiteSeparatorStyle: {
     color: 'white',
