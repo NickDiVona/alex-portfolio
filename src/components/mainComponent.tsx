@@ -9,7 +9,20 @@ import {
   Dimensions
 } from 'react-native';
 import { AppLoading } from 'expo';
+import { useSelector } from 'react-redux';
 import * as Font from 'expo-font';
+
+interface WidthNumber {
+  type: number;
+}
+
+interface WindowObject {
+  [window: string]: WidthNumber;
+}
+
+interface DimensionsObject {
+  [dimensions: string]: WindowObject;
+}
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -21,36 +34,27 @@ const Main = () => {
   const [fontLoaded, setFontLoaded] = useState(false);
   const [dimensions, setDimensions] = useState({ window, screen });
 
-  const onChange = (screen: any) => {
-    console.log({ screen });
-    setDimensions(screen);
+  const onChange = (dimensions: DimensionsObject) => {
+    // console.log(dimensions.window.width);
+    console.log('DIMENSIONS -----> ' + dimensions);
+    console.log('WINDOW -----> ' + dimensions.window);
+    console.log('WIDTH -----> ' + dimensions.window.width);
+    // setDimensions(dimensions.window.width);
   };
 
   useEffect(() => {
+    const width = Dimensions.get('window').width;
+    //pass this in somehow OR update the state
+
     Dimensions.addEventListener('change', onChange);
     return () => {
       Dimensions.removeEventListener('change', onChange);
     };
   });
+
   const yellowShortcuts = () => {
     return (
       <View style={styles.yellowTextContainerStyle}>
-        <TouchableOpacity
-          onPress={() => console.log('some yellow shit pressed')}
-        >
-          <View>
-            <Text style={styles.yellowTitleTextStyle}>Streamers</Text>
-          </View>
-        </TouchableOpacity>
-        <Text style={styles.yellowTextWhiteSeparatorStyle}> | </Text>
-        <TouchableOpacity
-          onPress={() => console.log('some yellow shit pressed')}
-        >
-          <View>
-            <Text style={styles.yellowTitleTextStyle}>Games</Text>
-          </View>
-        </TouchableOpacity>
-        <Text style={styles.yellowTextWhiteSeparatorStyle}> | </Text>
         <TouchableOpacity
           onPress={() => console.log('some yellow shit pressed')}
         >
@@ -63,7 +67,7 @@ const Main = () => {
           onPress={() => console.log('some yellow shit pressed')}
         >
           <View>
-            <Text style={styles.yellowTitleTextStyle}>Anime</Text>
+            <Text style={styles.yellowTitleTextStyle}>Streamers</Text>
           </View>
         </TouchableOpacity>
         <Text style={styles.yellowTextWhiteSeparatorStyle}> | </Text>
@@ -71,7 +75,7 @@ const Main = () => {
           onPress={() => console.log('some yellow shit pressed')}
         >
           <View>
-            <Text style={styles.yellowTitleTextStyle}>Mascots</Text>
+            <Text style={styles.yellowTitleTextStyle}>Creatures</Text>
           </View>
         </TouchableOpacity>
         <Text style={styles.yellowTextWhiteSeparatorStyle}> | </Text>
@@ -79,7 +83,15 @@ const Main = () => {
           onPress={() => console.log('some yellow shit pressed')}
         >
           <View>
-            <Text style={styles.yellowTitleTextStyle}>Misc</Text>
+            <Text style={styles.yellowTitleTextStyle}>Items</Text>
+          </View>
+        </TouchableOpacity>
+        <Text style={styles.yellowTextWhiteSeparatorStyle}> | </Text>
+        <TouchableOpacity
+          onPress={() => console.log('some yellow shit pressed')}
+        >
+          <View>
+            <Text style={styles.yellowTitleTextStyle}>Sub Badges</Text>
           </View>
         </TouchableOpacity>
       </View>
