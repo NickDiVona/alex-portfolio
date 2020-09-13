@@ -9,19 +9,20 @@ import {
   Dimensions
 } from 'react-native';
 import { AppLoading } from 'expo';
-import { useSelector } from 'react-redux';
 import * as Font from 'expo-font';
 
-interface WidthNumber {
-  type: number;
-}
+// 1200
+// 740
+// phone <= 411px
+// tablet <= 768px
 
-interface WindowObject {
-  [window: string]: WidthNumber;
-}
-
-interface DimensionsObject {
-  [dimensions: string]: WindowObject;
+interface WindowProps {
+  [window: string]: {
+    fontScale: number;
+    height: number;
+    scale: number;
+    width: number;
+  };
 }
 
 const fetchFonts = () => {
@@ -32,20 +33,30 @@ const fetchFonts = () => {
 
 const Main = () => {
   const [fontLoaded, setFontLoaded] = useState(false);
-  const [dimensions, setDimensions] = useState({ window, screen });
+  const [windowDimensions, setWindowDimensions] = useState({
+    fontScale: 0,
+    height: 0,
+    scale: 0,
+    width: 0
+  });
 
-  const onChange = (dimensions: DimensionsObject) => {
-    // console.log(dimensions.window.width);
-    console.log('DIMENSIONS -----> ' + dimensions);
-    console.log('WINDOW -----> ' + dimensions.window);
-    console.log('WIDTH -----> ' + dimensions.window.width);
-    // setDimensions(dimensions.window.width);
+  const onChange = ({ window }: WindowProps) => {
+    //dimension object
+    //window & screen objects
+    //fontScale, height, scale, width objects
+    //numerical values
+
+    console.log(`WINDOW WIDTH => ${window.width}`);
+
+    // console.log(`SCREEN => ${screen}`);
+    setWindowDimensions(window);
   };
 
   useEffect(() => {
-    const width = Dimensions.get('window').width;
-    //pass this in somehow OR update the state
+    console.log(windowDimensions.width);
+  }, []);
 
+  useEffect(() => {
     Dimensions.addEventListener('change', onChange);
     return () => {
       Dimensions.removeEventListener('change', onChange);
