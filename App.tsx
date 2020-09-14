@@ -2,19 +2,23 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
+import { Provider } from 'react-redux';
 //User
 import Main from './src/components/mainComponent';
+import store from './src/redux/configureStore';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <Image
-        source={require('./assets/images/windmills.jpg')}
-        style={styles.backgroundImageStyle}
-      />
-      <Main />
-    </View>
+    <Provider store={store}>
+      <View style={styles.container}>
+        <StatusBar style="auto" />
+        <Image
+          source={require('./assets/images/windmills.jpg')}
+          style={styles.backgroundImageStyle}
+        />
+        <Main />
+      </View>
+    </Provider>
   );
 }
 

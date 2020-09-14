@@ -1,8 +1,10 @@
 import { createStore, combineReducers } from 'redux';
 import currentScreenReducer from './reducers/currentScreenReducer';
+import currentDeviceTypeReducer from './reducers/currentDeviceTypeReducer';
 
 const rootReducer = combineReducers({
-  currentScreen: currentScreenReducer
+  currentScreen: currentScreenReducer,
+  currentDeviceType: currentDeviceTypeReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

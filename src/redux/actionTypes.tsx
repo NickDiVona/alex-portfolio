@@ -1,1 +1,2 @@
 export const CHANGE_SCREEN = 'CHANGE_SCREEN';
+export const CHANGE_DEVICE_TYPE = 'CHANGE_DEVICE_TYPE';
