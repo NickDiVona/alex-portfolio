@@ -8,8 +8,11 @@ import {
   TouchableOpacity,
   Dimensions
 } from 'react-native';
+import { useSelector } from 'react-redux';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
+//usr
+import YellowShortcuts from './yellowSelectionTextComponent';
 
 // 1200
 // 740
@@ -63,52 +66,6 @@ const Main = () => {
     };
   });
 
-  const yellowShortcuts = () => {
-    return (
-      <View style={styles.yellowTextContainerStyle}>
-        <TouchableOpacity
-          onPress={() => console.log('some yellow shit pressed')}
-        >
-          <View>
-            <Text style={styles.yellowTitleTextStyle}>Pokemon</Text>
-          </View>
-        </TouchableOpacity>
-        <Text style={styles.yellowTextWhiteSeparatorStyle}> | </Text>
-        <TouchableOpacity
-          onPress={() => console.log('some yellow shit pressed')}
-        >
-          <View>
-            <Text style={styles.yellowTitleTextStyle}>Streamers</Text>
-          </View>
-        </TouchableOpacity>
-        <Text style={styles.yellowTextWhiteSeparatorStyle}> | </Text>
-        <TouchableOpacity
-          onPress={() => console.log('some yellow shit pressed')}
-        >
-          <View>
-            <Text style={styles.yellowTitleTextStyle}>Creatures</Text>
-          </View>
-        </TouchableOpacity>
-        <Text style={styles.yellowTextWhiteSeparatorStyle}> | </Text>
-        <TouchableOpacity
-          onPress={() => console.log('some yellow shit pressed')}
-        >
-          <View>
-            <Text style={styles.yellowTitleTextStyle}>Items</Text>
-          </View>
-        </TouchableOpacity>
-        <Text style={styles.yellowTextWhiteSeparatorStyle}> | </Text>
-        <TouchableOpacity
-          onPress={() => console.log('some yellow shit pressed')}
-        >
-          <View>
-            <Text style={styles.yellowTitleTextStyle}>Sub Badges</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
-    );
-  };
-
   if (!fontLoaded) {
     return (
       <AppLoading
@@ -135,7 +92,8 @@ const Main = () => {
             Note: If you feel like any of these emotes are mislabelled, please
             let me know! Thank you {'<3'}
           </Text>
-          {yellowShortcuts()}
+          {/* {yellowShortcuts()} */}
+          <YellowShortcuts />
         </View>
       </View>
     </View>
@@ -147,7 +105,8 @@ export default Main;
 const styles = StyleSheet.create({
   mainContainerStyle: {
     flex: 1,
-    width: '50%',
+    width: '100%',
+    // width: '50%',
     alignItems: 'center',
     zIndex: 2,
     marginTop: 50
@@ -155,7 +114,8 @@ const styles = StyleSheet.create({
   grayContainerStyle: {
     backgroundColor: '#303030',
     flex: 1,
-    width: '100%',
+    width: '50%',
+    // width: '100%',
     borderRadius: 20,
     shadowColor: 'black',
     shadowOffset: { width: 5, height: 5 },
@@ -183,25 +143,5 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginBottom: 10,
     width: '100%'
-  },
-
-  yellowTextContainerStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-    flexWrap: 'wrap'
-  },
-
-  yellowTitleTextStyle: {
-    fontSize: 20,
-    color: '#FFC400',
-    fontStyle: 'italic',
-    fontFamily: 'Chewy-Regular',
-    fontWeight: 'bold',
-    width: '100%'
-  },
-  yellowTextWhiteSeparatorStyle: {
-    color: 'white',
-    marginHorizontal: 5
   }
 });
