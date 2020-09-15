@@ -5,7 +5,6 @@ import {
   Image,
   FlatList,
   StyleSheet,
-  TouchableOpacity,
   Dimensions
 } from 'react-native';
 import { useSelector } from 'react-redux';
@@ -13,11 +12,19 @@ import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 //usr
 import YellowShortcuts from './yellowSelectionTextComponent';
+import {
+  changeToSmallPhone,
+  changeToMediumPhone,
+  changeToLargePhone,
+  changeToTablet,
+  changeToDesktop
+} from '../redux/actionCreators';
 
-// 1200
-// 740
-// phone <= 411px
-// tablet <= 768px
+// widths
+// samsung s9/s9+  === 360px
+// iPhone 6/7/8 === 375px
+// iPhone 6/7/8 plus === 414px
+// iPad === 768px
 
 interface WindowProps {
   [window: string]: {
