@@ -7,7 +7,7 @@ import {
   StyleSheet,
   Dimensions
 } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 //usr
@@ -20,18 +20,22 @@ import {
   changeToDesktop
 } from '../redux/actionCreators';
 
-// widths
-// samsung s9/s9+  === 360px
-// iPhone 6/7/8 === 375px
-// iPhone 6/7/8 plus === 414px
-// iPad === 768px
-
 interface WindowProps {
   [window: string]: {
     fontScale: number;
     height: number;
     scale: number;
     width: number;
+  };
+}
+
+interface CurrentDeviceTypeProps {
+  [state: string]: {
+    device: string;
+    grayContainerWidth: string;
+    titleTextSize: number;
+    yellowTitleTextSize: number;
+    descriptionTextSize: number;
   };
 }
 
@@ -42,6 +46,10 @@ const fetchFonts = () => {
 };
 
 const Main = () => {
+  const dispatch = useDispatch();
+  const currentDeviceType = useSelector(
+    (state: CurrentDeviceTypeProps) => state.currentDeviceType
+  );
   const [fontLoaded, setFontLoaded] = useState(false);
   const [windowDimensions, setWindowDimensions] = useState({
     fontScale: 0,
@@ -50,11 +58,29 @@ const Main = () => {
     width: 0
   });
 
+  // widths
+  // samsung s9/s9+  === 360px
+  // iPhone 6/7/8 === 375px
+  // iPhone 6/7/8 plus === 414px
+  // iPad === 768px
+
   const onChange = ({ window }: WindowProps) => {
     //dimension object
     //window & screen objects
     //fontScale, height, scale, width objects
     //numerical values
+
+    if (windowDimensions.width <= 360) {
+      dispatch(changeToSmallPhone());
+    } else if (windowDimensions.width <= 375) {
+      dispatch(changeToMediumPhone());
+    } else if (windowDimensions.width <= 414) {
+      dispatch(changeToLargePhone());
+    } else if (windowDimensions.width <= 768) {
+      dispatch(changeToTablet());
+    } else {
+      dispatch(changeToDesktop());
+    }
 
     console.log(`WINDOW WIDTH => ${window.width}`);
 
@@ -66,12 +92,15 @@ const Main = () => {
     console.log(windowDimensions.width);
   }, []);
 
+  //setup event listeners for window resizing
   useEffect(() => {
     Dimensions.addEventListener('change', onChange);
     return () => {
       Dimensions.removeEventListener('change', onChange);
     };
   });
+
+  useEffect(() => {}, []);
 
   if (!fontLoaded) {
     return (
@@ -88,8 +117,20 @@ const Main = () => {
         source={require('../../assets/images/alexChibi.png')}
         style={{ height: 150, width: 150 }}
       />
-      <View style={styles.grayContainerStyle}>
-        <Text style={styles.titleTextStyle}>Royal's Portfolio</Text>
+      <View
+        style={[
+          styles.grayContainerStyle,
+          { width: currentDeviceType.grayContainerWidth }
+        ]}
+      >
+        <Text
+          style={[
+            styles.titleTextStyle,
+            { fontSize: currentDeviceType.titleTextSize }
+          ]}
+        >
+          Royal's Portfolio
+        </Text>
         <View style={styles.descriptionContainerStyle}>
           <Text style={styles.descriptionTextStyle}>
             Below you'll find a collection of emotes I've worked on for the past
@@ -121,8 +162,6 @@ const styles = StyleSheet.create({
   grayContainerStyle: {
     backgroundColor: '#303030',
     flex: 1,
-    width: '50%',
-    // width: '100%',
     borderRadius: 20,
     shadowColor: 'black',
     shadowOffset: { width: 5, height: 5 },
@@ -132,7 +171,7 @@ const styles = StyleSheet.create({
   },
   titleTextStyle: {
     color: 'white',
-    fontSize: 40,
+    // fontSize: 40,
     marginTop: 20,
     marginBottom: 20,
     fontFamily: 'Chewy-Regular',

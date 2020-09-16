@@ -18,7 +18,7 @@ type Action = ActionLayout;
 const INITIAL_STATE = {
   device: 'desktop',
   grayContainerWidth: '80%',
-  titleTextSize: 24,
+  titleTextSize: 18,
   yellowTitleTextSize: 14,
   descriptionTextSize: 12
 };
@@ -30,7 +30,7 @@ const currentDeviceTypeReducer = (state = INITIAL_STATE, action: Action) => {
       return {
         device: 'smallPhone',
         grayContainerWidth: '80%',
-        titleTextSize: 24,
+        titleTextSize: 18,
         yellowTitleTextSize: 14,
         descriptionTextSize: 12
       };
@@ -40,7 +40,7 @@ const currentDeviceTypeReducer = (state = INITIAL_STATE, action: Action) => {
       return {
         device: 'mediumPhone',
         grayContainerWidth: '80%',
-        titleTextSize: 24,
+        titleTextSize: 18,
         yellowTitleTextSize: 14,
         descriptionTextSize: 12
       };
@@ -60,7 +60,7 @@ const currentDeviceTypeReducer = (state = INITIAL_STATE, action: Action) => {
       return {
         device: 'tablet',
         grayContainerWidth: '80%',
-        titleTextSize: 24,
+        titleTextSize: 36,
         yellowTitleTextSize: 14,
         descriptionTextSize: 12
       };
@@ -68,8 +68,8 @@ const currentDeviceTypeReducer = (state = INITIAL_STATE, action: Action) => {
     case types.CHANGE_DEVICE_TO_DESKTOP:
       return {
         device: 'tablet',
-        grayContainerWidth: '80%',
-        titleTextSize: 24,
+        grayContainerWidth: '60%',
+        titleTextSize: 36,
         yellowTitleTextSize: 14,
         descriptionTextSize: 12
       };
