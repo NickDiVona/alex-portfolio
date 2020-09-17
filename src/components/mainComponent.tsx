@@ -70,6 +70,13 @@ const Main = () => {
     //fontScale, height, scale, width objects
     //numerical values
 
+    // console.log(`WINDOW WIDTH => ${window.width}`);
+
+    // console.log(`SCREEN => ${screen}`);
+    setWindowDimensions(window);
+  };
+
+  useEffect(() => {
     if (windowDimensions.width <= 360) {
       dispatch(changeToSmallPhone());
     } else if (windowDimensions.width <= 375) {
@@ -82,15 +89,15 @@ const Main = () => {
       dispatch(changeToDesktop());
     }
 
-    console.log(`WINDOW WIDTH => ${window.width}`);
+    let msg = `
+    --------------
+    width = ${windowDimensions.width} 
+    device = ${currentDeviceType.device}
+    ---------------
+    `;
 
-    // console.log(`SCREEN => ${screen}`);
-    setWindowDimensions(window);
-  };
-
-  useEffect(() => {
-    console.log(windowDimensions.width);
-  }, []);
+    console.log(msg);
+  }, [windowDimensions.width]);
 
   //setup event listeners for window resizing
   useEffect(() => {
@@ -154,7 +161,6 @@ const styles = StyleSheet.create({
   mainContainerStyle: {
     flex: 1,
     width: '100%',
-    // width: '50%',
     alignItems: 'center',
     zIndex: 2,
     marginTop: 50
@@ -171,7 +177,6 @@ const styles = StyleSheet.create({
   },
   titleTextStyle: {
     color: 'white',
-    // fontSize: 40,
     marginTop: 20,
     marginBottom: 20,
     fontFamily: 'Chewy-Regular',
@@ -180,7 +185,6 @@ const styles = StyleSheet.create({
   descriptionContainerStyle: {
     justifyContent: 'center',
     alignItems: 'center',
-    textAlign: 'center',
     flexShrink: 1,
     width: '90%'
   },
@@ -188,6 +192,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 14,
     marginBottom: 10,
-    width: '100%'
+    width: '100%',
+    textAlign: 'center'
   }
 });
