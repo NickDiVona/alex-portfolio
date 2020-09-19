@@ -1,6 +1,18 @@
+//sys
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
+//usr
+
+interface CurrentDeviceTypeProps {
+  [state: string]: {
+    device: string;
+    grayContainerWidth: string;
+    titleTextSize: number;
+    yellowTitleTextSize: number;
+    descriptionTextSize: number;
+  };
+}
 
 const YellowShortcuts = () => {
   const currentDeviceType = useSelector(

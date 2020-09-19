@@ -67,9 +67,9 @@ const currentDeviceTypeReducer = (state = INITIAL_STATE, action: Action) => {
 
     case types.CHANGE_DEVICE_TO_DESKTOP:
       return {
-        device: 'tablet',
+        device: 'desktop',
         grayContainerWidth: '60%',
-        titleTextSize: 36,
+        titleTextSize: 40,
         yellowTitleTextSize: 14,
         descriptionTextSize: 12
       };

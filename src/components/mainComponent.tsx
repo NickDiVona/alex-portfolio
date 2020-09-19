@@ -1,12 +1,7 @@
+//sys
 import React, { useState, useEffect } from 'react';
-import {
-  View,
-  Text,
-  Image,
-  FlatList,
-  StyleSheet,
-  Dimensions
-} from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
+import { useDimensions } from '@react-native-community/hooks';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
@@ -20,14 +15,14 @@ import {
   changeToDesktop
 } from '../redux/actionCreators';
 
-interface WindowProps {
-  [window: string]: {
-    fontScale: number;
-    height: number;
-    scale: number;
-    width: number;
-  };
-}
+// interface WindowProps {
+//   [window: string]: {
+//     fontScale: number;
+//     height: number;
+//     scale: number;
+//     width: number;
+//   };
+// }
 
 interface CurrentDeviceTypeProps {
   [state: string]: {
@@ -51,12 +46,16 @@ const Main = () => {
     (state: CurrentDeviceTypeProps) => state.currentDeviceType
   );
   const [fontLoaded, setFontLoaded] = useState(false);
-  const [windowDimensions, setWindowDimensions] = useState({
-    fontScale: 0,
-    height: 0,
-    scale: 0,
-    width: 0
-  });
+  const windowWidth = useDimensions().window.width;
+
+  console.log(windowWidth);
+
+  // const [windowDimensions, setWindowDimensions] = useState({
+  //   fontScale: 0,
+  //   height: 0,
+  //   scale: 0,
+  //   width: 0
+  // });
 
   // widths
   // samsung s9/s9+  === 360px
@@ -64,26 +63,28 @@ const Main = () => {
   // iPhone 6/7/8 plus === 414px
   // iPad === 768px
 
-  const onChange = ({ window }: WindowProps) => {
-    //dimension object
-    //window & screen objects
-    //fontScale, height, scale, width objects
-    //numerical values
-
-    // console.log(`WINDOW WIDTH => ${window.width}`);
-
-    // console.log(`SCREEN => ${screen}`);
-    setWindowDimensions(window);
-  };
+  useEffect(() => {
+    if (windowWidth <= 360) {
+      dispatch(changeToSmallPhone());
+    } else if (windowWidth <= 375) {
+      dispatch(changeToMediumPhone());
+    } else if (windowWidth <= 414) {
+      dispatch(changeToLargePhone());
+    } else if (windowWidth <= 768) {
+      dispatch(changeToTablet());
+    } else {
+      dispatch(changeToDesktop());
+    }
+  }, []);
 
   useEffect(() => {
-    if (windowDimensions.width <= 360) {
+    if (windowWidth <= 360) {
       dispatch(changeToSmallPhone());
-    } else if (windowDimensions.width <= 375) {
+    } else if (windowWidth <= 375) {
       dispatch(changeToMediumPhone());
-    } else if (windowDimensions.width <= 414) {
+    } else if (windowWidth <= 414) {
       dispatch(changeToLargePhone());
-    } else if (windowDimensions.width <= 768) {
+    } else if (windowWidth <= 768) {
       dispatch(changeToTablet());
     } else {
       dispatch(changeToDesktop());
@@ -91,23 +92,23 @@ const Main = () => {
 
     let msg = `
     --------------
-    width = ${windowDimensions.width} 
+    width = ${windowWidth}
     device = ${currentDeviceType.device}
     ---------------
     `;
 
     console.log(msg);
-  }, [windowDimensions.width]);
+  }, [windowWidth]);
 
-  //setup event listeners for window resizing
-  useEffect(() => {
-    Dimensions.addEventListener('change', onChange);
-    return () => {
-      Dimensions.removeEventListener('change', onChange);
-    };
-  });
+  // //setup event listeners for window resizing
+  // useEffect(() => {
+  //   Dimensions.addEventListener('change', onChange);
+  //   return () => {
+  //     Dimensions.removeEventListener('change', onChange);
+  //   };
+  // });
 
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
 
   if (!fontLoaded) {
     return (
