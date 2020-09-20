@@ -4,87 +4,78 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 //usr
 
-interface CurrentDeviceTypeProps {
-  [state: string]: {
-    device: string;
-    grayContainerWidth: string;
-    titleTextSize: number;
-    yellowTitleTextSize: number;
-    descriptionTextSize: number;
-  };
-}
+// //FIX THIS
+// const yellowTextValues: any = {
+//   left: [
+//     { name: 'Pokemon', key: '1sdfgsdfbvsdrg' },
+//     { name: 'Streamers', key: 'op8yugh2uoywsgebf' },
+//     { name: 'Creatures', key: '0987tysdwsdr231a' }
+//   ],
+//   right: [
+//     { name: 'Items', key: '098o7ikuytjt5y467' },
+//     { name: 'Sub Badges', key: 'jk23e4rfghjm098iuyt' }
+//   ]
+// };
+const yellowTextValues = [
+  { name: 'Pokemon', key: '1sdfgsdfbvsdrg' },
+  { name: 'Streamers', key: 'op8yugh2uoywsgebf' },
+  { name: 'Creatures', key: '0987tysdwsdr231a' },
+  { name: 'Items', key: '098o7ikuytjt5y467' },
+  { name: 'Sub Badges', key: 'jk23e4rfghjm098iuyt' }
+];
 
 const YellowShortcuts = () => {
   const currentDeviceType = useSelector(
     (state: any) => state.currentDeviceType
   );
 
+  const yellowClickies = yellowTextValues.map(
+    (item: { name: string; key: string }) => {
+      return (
+        <TouchableOpacity
+          onPress={() => console.log(`${item.name} pressed!`)}
+          key={item.key.toString()}
+          style={{ paddingHorizontal: 10 }}
+        >
+          <View>
+            <Text
+              style={[
+                styles.yellowTitleTextStyle,
+                { fontSize: currentDeviceType.yellowTitleTextSize }
+              ]}
+            >
+              {item.name}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      );
+    }
+  );
+
+  if (
+    currentDeviceType.device === 'smallPhone' ||
+    currentDeviceType.device === 'mediumPhone' ||
+    currentDeviceType.device === 'largePhone'
+  ) {
+    return (
+      <View
+        style={[
+          styles.yellowTextContainerStyle,
+          { flexDirection: 'row', alignItems: 'flex-start' }
+        ]}
+      >
+        {yellowClickies}
+      </View>
+    );
+  }
   return (
-    <View style={styles.yellowTextContainerStyle}>
-      <TouchableOpacity onPress={() => console.log('some yellow shit pressed')}>
-        <View>
-          <Text
-            style={[
-              styles.yellowTitleTextStyle,
-              { fontSize: currentDeviceType.yellowTitleTextStyle }
-            ]}
-          >
-            Pokemon
-          </Text>
-        </View>
-      </TouchableOpacity>
-      <Text style={styles.yellowTextWhiteSeparatorStyle}> | </Text>
-      <TouchableOpacity onPress={() => console.log('some yellow shit pressed')}>
-        <View>
-          <Text
-            style={[
-              styles.yellowTitleTextStyle,
-              { fontSize: currentDeviceType.yellowTitleTextStyle }
-            ]}
-          >
-            Streamers
-          </Text>
-        </View>
-      </TouchableOpacity>
-      <Text style={styles.yellowTextWhiteSeparatorStyle}> | </Text>
-      <TouchableOpacity onPress={() => console.log('some yellow shit pressed')}>
-        <View>
-          <Text
-            style={[
-              styles.yellowTitleTextStyle,
-              { fontSize: currentDeviceType.yellowTitleTextStyle }
-            ]}
-          >
-            Creatures
-          </Text>
-        </View>
-      </TouchableOpacity>
-      <Text style={styles.yellowTextWhiteSeparatorStyle}> | </Text>
-      <TouchableOpacity onPress={() => console.log('some yellow shit pressed')}>
-        <View>
-          <Text
-            style={[
-              styles.yellowTitleTextStyle,
-              { fontSize: currentDeviceType.yellowTitleTextStyle }
-            ]}
-          >
-            Items
-          </Text>
-        </View>
-      </TouchableOpacity>
-      <Text style={styles.yellowTextWhiteSeparatorStyle}> | </Text>
-      <TouchableOpacity onPress={() => console.log('some yellow shit pressed')}>
-        <View>
-          <Text
-            style={[
-              styles.yellowTitleTextStyle,
-              { fontSize: currentDeviceType.yellowTitleTextStyle }
-            ]}
-          >
-            Sub Badges
-          </Text>
-        </View>
-      </TouchableOpacity>
+    <View
+      style={[
+        styles.yellowTextContainerStyle,
+        { flexDirection: 'row', alignItems: 'center' }
+      ]}
+    >
+      {yellowClickies}
     </View>
   );
 };
@@ -94,8 +85,6 @@ export default YellowShortcuts;
 const styles = StyleSheet.create({
   yellowTextContainerStyle: {
     justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
     flexWrap: 'wrap'
   },
 

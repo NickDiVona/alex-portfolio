@@ -17,10 +17,12 @@ type Action = ActionLayout;
 //reducer
 const INITIAL_STATE = {
   device: 'desktop',
+  iconDimensions: 150,
+  iconUpperMargin: 50,
   grayContainerWidth: '80%',
-  titleTextSize: 18,
-  yellowTitleTextSize: 14,
-  descriptionTextSize: 12
+  titleTextSize: 36,
+  yellowTitleTextSize: 18,
+  descriptionTextSize: 14
 };
 
 const currentDeviceTypeReducer = (state = INITIAL_STATE, action: Action) => {
@@ -29,6 +31,8 @@ const currentDeviceTypeReducer = (state = INITIAL_STATE, action: Action) => {
     case types.CHANGE_DEVICE_TO_SMALL_PHONE:
       return {
         device: 'smallPhone',
+        iconDimensions: 80,
+        iconUpperMargin: 20,
         grayContainerWidth: '80%',
         titleTextSize: 18,
         yellowTitleTextSize: 14,
@@ -39,6 +43,8 @@ const currentDeviceTypeReducer = (state = INITIAL_STATE, action: Action) => {
     case types.CHANGE_DEVICE_TO_MEDIUM_PHONE:
       return {
         device: 'mediumPhone',
+        iconDimensions: 80,
+        iconUpperMargin: 20,
         grayContainerWidth: '80%',
         titleTextSize: 18,
         yellowTitleTextSize: 14,
@@ -49,6 +55,8 @@ const currentDeviceTypeReducer = (state = INITIAL_STATE, action: Action) => {
     case types.CHANGE_DEVICE_TO_LARGE_PHONE:
       return {
         device: 'largePhone',
+        iconDimensions: 100,
+        iconUpperMargin: 20,
         grayContainerWidth: '80%',
         titleTextSize: 24,
         yellowTitleTextSize: 14,
@@ -59,20 +67,16 @@ const currentDeviceTypeReducer = (state = INITIAL_STATE, action: Action) => {
     case types.CHANGE_DEVICE_TO_TABLET:
       return {
         device: 'tablet',
+        iconDimensions: 120,
+        iconUpperMargin: 40,
         grayContainerWidth: '80%',
         titleTextSize: 36,
         yellowTitleTextSize: 14,
-        descriptionTextSize: 12
+        descriptionTextSize: 14
       };
 
     case types.CHANGE_DEVICE_TO_DESKTOP:
-      return {
-        device: 'desktop',
-        grayContainerWidth: '60%',
-        titleTextSize: 40,
-        yellowTitleTextSize: 14,
-        descriptionTextSize: 12
-      };
+      return INITIAL_STATE;
 
     default:
       return state;

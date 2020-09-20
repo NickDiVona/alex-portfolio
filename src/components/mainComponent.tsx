@@ -27,6 +27,8 @@ import {
 interface CurrentDeviceTypeProps {
   [state: string]: {
     device: string;
+    iconDimensions: number;
+    iconUpperMargin: number;
     grayContainerWidth: string;
     titleTextSize: number;
     yellowTitleTextSize: number;
@@ -47,8 +49,6 @@ const Main = () => {
   );
   const [fontLoaded, setFontLoaded] = useState(false);
   const windowWidth = useDimensions().window.width;
-
-  console.log(windowWidth);
 
   // const [windowDimensions, setWindowDimensions] = useState({
   //   fontScale: 0,
@@ -120,10 +120,18 @@ const Main = () => {
   }
 
   return (
-    <View style={styles.mainContainerStyle}>
+    <View
+      style={[
+        styles.mainContainerStyle,
+        { marginTop: currentDeviceType.iconUpperMargin }
+      ]}
+    >
       <Image
         source={require('../../assets/images/alexChibi.png')}
-        style={{ height: 150, width: 150 }}
+        style={{
+          height: currentDeviceType.iconDimensions,
+          width: currentDeviceType.iconDimensions
+        }}
       />
       <View
         style={[
@@ -140,15 +148,24 @@ const Main = () => {
           Royal's Portfolio
         </Text>
         <View style={styles.descriptionContainerStyle}>
-          <Text style={styles.descriptionTextStyle}>
+          <Text
+            style={[
+              styles.descriptionTextStyle,
+              { fontSize: currentDeviceType.descriptionTextSize }
+            ]}
+          >
             Below you'll find a collection of emotes I've worked on for the past
             few years.
           </Text>
-          <Text style={styles.descriptionTextStyle}>
+          <Text
+            style={[
+              styles.descriptionTextStyle,
+              { fontSize: currentDeviceType.descriptionTextSize }
+            ]}
+          >
             Note: If you feel like any of these emotes are mislabelled, please
             let me know! Thank you {'<3'}
           </Text>
-          {/* {yellowShortcuts()} */}
           <YellowShortcuts />
         </View>
       </View>
@@ -163,8 +180,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     alignItems: 'center',
-    zIndex: 2,
-    marginTop: 50
+    zIndex: 2
   },
   grayContainerStyle: {
     backgroundColor: '#303030',
@@ -174,7 +190,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 5, height: 5 },
     shadowOpacity: 0.4,
     alignItems: 'center',
-    paddingHorizontal: 40
+    paddingHorizontal: 20
   },
   titleTextStyle: {
     color: 'white',
@@ -191,7 +207,6 @@ const styles = StyleSheet.create({
   },
   descriptionTextStyle: {
     color: 'white',
-    fontSize: 14,
     marginBottom: 10,
     width: '100%',
     textAlign: 'center'
