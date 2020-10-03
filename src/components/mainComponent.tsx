@@ -7,6 +7,7 @@ import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 //usr
 import YellowShortcuts from './yellowSelectionTextComponent';
+import ContentDetails from './contentDetailComponent';
 import {
   changeToSmallPhone,
   changeToMediumPhone,
@@ -167,6 +168,7 @@ const Main = () => {
             let me know! Thank you {'<3'}
           </Text>
           <YellowShortcuts />
+          <ContentDetails />
         </View>
       </View>
     </View>
