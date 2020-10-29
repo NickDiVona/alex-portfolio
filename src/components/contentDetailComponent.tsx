@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 const ContentDetails = () => {
   return (
     <View>
-      <Text style={{ color: 'white' }}>Content</Text>
+      <Text style={{ color: 'white', marginTop: 20 }}>Content</Text>
     </View>
   );
 };
