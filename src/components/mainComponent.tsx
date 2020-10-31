@@ -28,8 +28,8 @@ import {
 interface CurrentDeviceTypeProps {
   [state: string]: {
     device: string;
-    iconDimensions: number;
-    iconUpperMargin: number;
+    mainIconDimensions: number;
+    mainIconUpperMargin: number;
     grayContainerWidth: string;
     titleTextSize: number;
     yellowTitleTextSize: number;
@@ -124,14 +124,14 @@ const Main = () => {
     <View
       style={[
         styles.mainContainerStyle,
-        { marginTop: currentDeviceType.iconUpperMargin }
+        { marginTop: currentDeviceType.mainIconUpperMargin }
       ]}
     >
       <Image
         source={require('../../assets/images/alexChibi.png')}
         style={{
-          height: currentDeviceType.iconDimensions,
-          width: currentDeviceType.iconDimensions
+          height: currentDeviceType.mainIconDimensions,
+          width: currentDeviceType.mainIconDimensions
         }}
       />
       <View
