@@ -36,7 +36,13 @@ const ContentDetails = () => {
     const { item } = props;
 
     return (
-      <View style={{ flexDirection: 'row' }}>
+      <View
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '20%'
+        }}
+      >
         <Image
           source={item.image}
           style={{
@@ -44,7 +50,7 @@ const ContentDetails = () => {
             height: currentDeviceType.iconImageDimensions
           }}
         />
-        <Text>{item.name}</Text>
+        {/* <Text style={{ color: 'white' }}>{item.name}</Text> */}
       </View>
     );
   };
@@ -55,6 +61,11 @@ const ContentDetails = () => {
         data={pokemonList}
         renderItem={renderPokmonItem}
         keyExtractor={(item) => item.name.toString()}
+        style={{ width: '100%' }}
+        numColumns={5}
+        ItemSeparatorComponent={() => (
+          <View style={{ height: currentDeviceType.iconImageDimensions / 2 }} />
+        )}
       />
     );
   }
