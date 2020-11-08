@@ -1,4 +1,4 @@
-export const pokemonList = [
+export const streamersList = [
   { name: 'databrain', image: require('./images/Streamers/databrain.png') },
   { name: 'datacry', image: require('./images/Streamers/datacry.png') },
   { name: 'dataggBL', image: require('./images/Streamers/dataggBL.png') },

@@ -1,11 +1,15 @@
 import * as types from './actionTypes';
 
+//list changes
+
 export const changeScreen = (screen: string) => {
   return {
     type: types.CHANGE_SCREEN,
     payload: screen
   };
 };
+
+//device changes
 
 export const changeToSmallPhone = () => {
   return {
