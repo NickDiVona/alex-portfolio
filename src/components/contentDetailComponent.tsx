@@ -59,7 +59,7 @@ const ContentDetails = () => {
       data={currentScreen.list}
       renderItem={renderPokmonItem}
       keyExtractor={(item) => item.name.toString()}
-      style={{ width: '100%' }}
+      style={{ width: '100%', marginTop: 25 }}
       numColumns={5}
       ItemSeparatorComponent={() => (
         <View style={{ height: currentDeviceType.iconImageDimensions / 2 }} />
