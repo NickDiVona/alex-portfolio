@@ -1,12 +1,18 @@
 {
   "files": {
-    "app.js": "/static/js/bundle.js",
-    "app.js.map": "/static/js/bundle.js.map",
+    "app.js": "/static/js/app.6472dc82.chunk.js",
+    "app.js.map": "/static/js/app.6472dc82.chunk.js.map",
+    "runtime~app.js": "/static/js/runtime~app.2e9f1821.js",
+    "runtime~app.js.map": "/static/js/runtime~app.2e9f1821.js.map",
+    "static/js/2.e083043e.chunk.js": "/static/js/2.e083043e.chunk.js",
+    "static/js/2.e083043e.chunk.js.map": "/static/js/2.e083043e.chunk.js.map",
     "favicon-16.png": "/favicon-16.png",
     "favicon-32.png": "/favicon-32.png",
     "favicon.ico": "/favicon.ico",
     "index.html": "/index.html",
     "manifest.json": "/manifest.json",
+    "serve.json": "/serve.json",
+    "static/js/2.e083043e.chunk.js.LICENSE.txt": "/static/js/2.e083043e.chunk.js.LICENSE.txt",
     "static/media/alexChibi.png": "/static/media/alexChibi.cd684262.png",
     "static/media/beebadge2.png": "/static/media/beebadge2.6525b27f.png",
     "static/media/beebadge3.png": "/static/media/beebadge3.888649da.png",
@@ -52,6 +58,8 @@
     "static/media/wtf.png": "/static/media/wtf.be149909.png"
   },
   "entrypoints": [
-    "static/js/bundle.js"
+    "static/js/runtime~app.2e9f1821.js",
+    "static/js/2.e083043e.chunk.js",
+    "static/js/app.6472dc82.chunk.js"
   ]
 }
