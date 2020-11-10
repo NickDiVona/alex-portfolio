@@ -13,9 +13,8 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
+    "homepage": "https://nickdivona.github.io/alex-portfolio/",
     "ios": {
       "supportsTablet": true
     },
