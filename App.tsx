@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 //User
 import Main from './src/components/mainComponent';
 import store from './src/redux/configureStore';
+import { siteImages } from './assets/siteImages';
 
 export default function App() {
   return (
@@ -13,7 +14,7 @@ export default function App() {
       <View style={styles.container}>
         <StatusBar style="auto" />
         <Image
-          source={require('./assets/images/windmills.jpg')}
+          source={siteImages.windmills}
           style={styles.backgroundImageStyle}
         />
         <Main />
