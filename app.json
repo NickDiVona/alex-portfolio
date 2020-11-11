@@ -14,12 +14,12 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
-    "homepage": "https://nickdivona.github.io/alex-portfolio/",
     "ios": {
       "supportsTablet": true
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "homepage": "https://nickdivona.github.io/alex-portfolio/"
     }
   }
 }
