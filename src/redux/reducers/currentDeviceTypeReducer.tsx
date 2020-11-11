@@ -23,7 +23,7 @@ const INITIAL_STATE = {
   titleTextSize: 36,
   yellowTitleTextSize: 18,
   descriptionTextSize: 14,
-  iconImageDimensions: 50
+  iconImageDimensions: 75
 };
 
 const currentDeviceTypeReducer = (state = INITIAL_STATE, action: Action) => {
@@ -38,7 +38,7 @@ const currentDeviceTypeReducer = (state = INITIAL_STATE, action: Action) => {
         titleTextSize: 18,
         yellowTitleTextSize: 14,
         descriptionTextSize: 12,
-        iconImageDimensions: 25
+        iconImageDimensions: 30
       };
 
     // 375 or narrower
@@ -64,7 +64,7 @@ const currentDeviceTypeReducer = (state = INITIAL_STATE, action: Action) => {
         titleTextSize: 24,
         yellowTitleTextSize: 14,
         descriptionTextSize: 12,
-        iconImageDimensions: 40
+        iconImageDimensions: 50
       };
 
     // 768 or narrower
@@ -77,7 +77,7 @@ const currentDeviceTypeReducer = (state = INITIAL_STATE, action: Action) => {
         titleTextSize: 36,
         yellowTitleTextSize: 14,
         descriptionTextSize: 14,
-        iconImageDimensions: 50
+        iconImageDimensions: 60
       };
 
     case types.CHANGE_DEVICE_TO_DESKTOP:
